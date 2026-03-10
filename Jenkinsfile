@@ -2,9 +2,6 @@
 pipeline {
     agent any
 
-    tools {
-        sonarQubeScanner 'sonar-scanner'
-    }
     stages {
 
         stage('Install Dependencies') {
