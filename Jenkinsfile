@@ -3,13 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                echo "Pulling code from GitHub"
-                git 'https://github.com/poonamrajore/devops-cicd-project.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 echo "Installing packages"
