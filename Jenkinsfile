@@ -36,7 +36,19 @@ pipeline {
     steps {
         echo "Building Docker Image"
         sh 'docker build -t devops-cicd-app .'
+         }
+       }
+stage('Push Docker Image') {
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+            sh '''
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker tag devops-cicd-app $DOCKER_USER/devops-cicd-app:latest
+            docker push $DOCKER_USER/devops-cicd-app:latest
+            '''
+        }
     }
-}
-    }
+  }
+
+ }
 }
