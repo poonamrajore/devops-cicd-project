@@ -17,16 +17,17 @@ pipeline {
                 sh 'node -v'
             }
         }
-   stage('SonarQube Scan') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh '''
-                    sonar-scanner \
-                    -Dsonar.projectKey=devops-cicd-project \
-                    -Dsonar.sources=. \
-                    -Dsonar.host.url=http://http://54.180.152.131:9000 \
-                    -Dsonar.login=$SONAR_AUTH_TOKEN
-                    '''
+ 
+  stage('SonarQube Scan') {
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            sh '''
+            sonar-scanner \
+            -Dsonar.projectKey=devops-cicd-project \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=http://54.180.152.131:9000
+            '''
+        
                 }
             }
         }
